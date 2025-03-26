@@ -170,12 +170,21 @@ func getAllSourceImages(origin CopyOrigin, reg registry.Registry, opts CopyOpts)
 
 func getProvidedSourceImages(origin CopyOrigin, reg registry.Registry, opts CopyOpts) (*ctlimgset.UnprocessedImageRefs, []*ctlbundle.Bundle, error) {
 	unprocessedImageRefs := ctlimgset.NewUnprocessedImageRefs()
+	fmt.Println("getProvidedSourceImages ==============================")
+	fmt.Println(origin.LockfilePath)
+	fmt.Println(origin.ImageRef)
+	fmt.Println("getProvidedSourceImages ==============================")
 	switch {
 	case origin.LockfilePath != "":
 		bundleLock, imagesLock, err := lockconfig.NewLockFromPath(origin.LockfilePath)
 		if err != nil {
 			return nil, nil, err
 		}
+
+		fmt.Println("origin.LockfilePath ==============================")
+		fmt.Println(bundleLock)
+		fmt.Println(imagesLock)
+		fmt.Println("origin.LockfilePath ==============================")
 
 		switch {
 		case bundleLock != nil:
