@@ -247,6 +247,11 @@ func getProvidedSourceImages(origin CopyOrigin, reg registry.Registry, opts Copy
 	default:
 		opts.Logger.Tracef("copy bundle\n")
 		bundle, allBundles, imagesRef, err := getBundleImageRefs(origin.BundleRef, reg, opts)
+		fmt.Println("copy bundle ==============================")
+		fmt.Println(origin.BundleRef)
+		fmt.Println(bundle)
+		fmt.Println(allBundles)
+		fmt.Println("copy bundle ==============================")
 		if err != nil {
 			return nil, nil, err
 		}
