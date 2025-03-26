@@ -187,6 +187,12 @@ func (o *SingleLayerReader) Read(img regv1.Image) (lockconfig.ImagesLock, error)
 
 	layer := layers[0]
 
+	fmt.Println("Read ==========================")
+	fmt.Println(layer)
+	fmt.Println(layer.Digest())
+	fmt.Println(layer.Size())
+	fmt.Println("Read ==========================")
+
 	mediaType, err := layer.MediaType()
 	if err != nil {
 		return conf, err
