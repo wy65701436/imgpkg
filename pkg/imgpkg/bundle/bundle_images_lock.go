@@ -51,6 +51,9 @@ func (o *Bundle) buildAllImagesLock(throttleReq *util.Throttle, logger util.Logg
 	fmt.Println("buildAllImagesLock ===========================")
 	fmt.Println(locationsConfig)
 	fmt.Println(locationsConfig.bundleDigestRef)
+	fmt.Println(img)
+	fmt.Println(img.Digest())
+	fmt.Println(img.RawManifest())
 	fmt.Println("buildAllImagesLock ===========================")
 
 	imageRefsToProcess, err := o.fetchImagesRef(img, &locationsConfig)
