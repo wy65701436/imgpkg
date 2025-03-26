@@ -43,6 +43,9 @@ func CopyToTar(origin CopyOrigin, outputTarPath string, opts CopyOpts, reg regis
 	opts.Logger.Tracef("CopyToTar\n")
 
 	unprocessedImageRefs, _, err := getAllSourceImages(origin, reg, opts)
+	fmt.Println("CopyToTar ==============================")
+	fmt.Println(unprocessedImageRefs)
+	fmt.Println("CopyToTar ==============================")
 	if err != nil {
 		return nil, err
 	}
@@ -104,6 +107,9 @@ func CopyToRepository(origin CopyOrigin, repository string, opts CopyOpts, reg r
 		}
 	} else {
 		unprocessedImageRefs, bundles, err := getAllSourceImages(origin, reg, opts)
+		fmt.Println("CopyToRepository ==============================")
+		fmt.Println(unprocessedImageRefs)
+		fmt.Println("CopyToRepository ==============================")
 		if err != nil {
 			return nil, err
 		}

@@ -152,6 +152,11 @@ func (c *CopyOptions) Run() error {
 			BundleRef:    c.BundleFlags.Bundle,
 			LockfilePath: c.LockInputFlags.LockFilePath,
 		}
+
+		fmt.Println("Run c.TarFlags.IsDst()=====================")
+		fmt.Println(origin)
+		fmt.Println("Run c.TarFlags.IsDst()=====================")
+
 		ids, err := v1.CopyToTar(origin, c.TarFlags.TarDst, opts, registry.NewRegistryWithProgress(reg, imagesUploaderLogger))
 		if err != nil {
 			return err
@@ -172,6 +177,10 @@ func (c *CopyOptions) Run() error {
 			TarPath:      c.TarFlags.TarSrc,
 			LockfilePath: c.LockInputFlags.LockFilePath,
 		}
+
+		fmt.Println("Run c.isRepoDst()=====================")
+		fmt.Println(origin)
+		fmt.Println("Run c.isRepoDst()=====================")
 
 		processedImages, err := v1.CopyToRepository(origin, c.RepoDst, opts, reg)
 		if err != nil {
