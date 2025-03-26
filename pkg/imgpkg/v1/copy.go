@@ -106,8 +106,10 @@ func CopyToRepository(origin CopyOrigin, repository string, opts CopyOpts, reg r
 			}
 		}
 	} else {
-		unprocessedImageRefs, bundles, err := getAllSourceImages(origin, reg, opts)
 		fmt.Println("CopyToRepository ==============================")
+		unprocessedImageRefs, bundles, err := getAllSourceImages(origin, reg, opts)
+		fmt.Println(origin)
+		fmt.Println(opts)
 		fmt.Println(unprocessedImageRefs)
 		fmt.Println("CopyToRepository ==============================")
 		if err != nil {
