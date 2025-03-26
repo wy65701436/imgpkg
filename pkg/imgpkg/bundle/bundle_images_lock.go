@@ -191,7 +191,6 @@ func (o *SingleLayerReader) Read(img regv1.Image) (lockconfig.ImagesLock, error)
 	fmt.Println(layer)
 	fmt.Println(layer.Digest())
 	fmt.Println(layer.Size())
-	fmt.Println("Read ==========================")
 
 	mediaType, err := layer.MediaType()
 	if err != nil {
@@ -211,6 +210,7 @@ func (o *SingleLayerReader) Read(img regv1.Image) (lockconfig.ImagesLock, error)
 	tarReader := tar.NewReader(unzippedReader)
 	for {
 		header, err := tarReader.Next()
+		fmt.Println(header)
 		if err != nil {
 			if err == io.EOF {
 				return conf, fmt.Errorf("Expected to find .imgpkg/images.yml in bundle image")
@@ -238,6 +238,8 @@ func (o *SingleLayerReader) Read(img regv1.Image) (lockconfig.ImagesLock, error)
 		}
 		return conf, fmt.Errorf("Unmarshalling ImagesLock from image with Digest '%s': %s", digest, err)
 	}
+	fmt.Println(imgLock)
+	fmt.Println("Read ==========================")
 	o.storeImagesLock(img, imgLock)
 	return imgLock, nil
 }
