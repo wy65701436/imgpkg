@@ -61,6 +61,10 @@ func NewLocationsWithReader(reader LocationImageReader, ui util.LoggerWithLevels
 func (r *LocationsConfigs) Fetch(registry ImagesMetadata, bundleRef name.Digest) (ImageLocationsConfig, error) {
 	r.ui.Tracef("Fetching Locations OCI Images for bundle: %s\n", bundleRef)
 
+	fmt.Println("LocationsConfigs Fetch ============================ ")
+	fmt.Println(bundleRef)
+	fmt.Println("LocationsConfigs Fetch ============================ ")
+
 	locRef, err := r.locationsRefFromBundleRef(bundleRef)
 	if err != nil {
 		return ImageLocationsConfig{}, fmt.Errorf("Calculating locations image tag: %s", err)
