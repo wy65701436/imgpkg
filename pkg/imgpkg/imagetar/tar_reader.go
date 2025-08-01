@@ -30,10 +30,6 @@ func NewTarReader(path string, concurrency int) TarReader {
 func (r TarReader) Read() ([]imagedesc.ImageOrIndex, error) {
 	file := tarFile{r.path}
 
-	fmt.Println("=================================")
-	fmt.Println(file)
-	fmt.Println("=================================")
-
 	ids, err := r.getIdsFromManifest(file)
 	if err != nil {
 		return nil, err

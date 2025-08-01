@@ -135,6 +135,10 @@ func (i *TarImageSet) Import(path string, importRepo regname.Repository, registr
 		return nil, err
 	}
 
+	fmt.Println("Import =================================================")
+	fmt.Println(imgOrIndexes)
+	fmt.Println("Import =================================================")
+
 	processedImages, err := i.imageSet.Import(imgOrIndexes, importRepo, registry)
 	if err != nil {
 		return nil, err

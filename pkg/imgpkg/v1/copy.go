@@ -94,10 +94,6 @@ func CopyToRepository(origin CopyOrigin, repository string, opts CopyOpts, reg r
 				foundRootBundle = true
 				pImage := plainimage.NewFetchedPlainImageWithTag(processedImage.DigestRef, processedImage.Tag, processedImage.Image)
 
-				fmt.Println("processedImage ==============================")
-				fmt.Println(pImage)
-				fmt.Println("processedImage ==============================")
-
 				lockReader := ctlbundle.NewImagesLockReader()
 				parentBundle = ctlbundle.NewBundle(pImage, reg, lockReader, ctlbundle.NewFetcherFromProcessedImages(processedImages.All(), reg, lockReader))
 			}
@@ -106,15 +102,20 @@ func CopyToRepository(origin CopyOrigin, repository string, opts CopyOpts, reg r
 		if foundRootBundle {
 			bundles, _, err := parentBundle.AllImagesLockRefs(opts.Concurrency, opts.Logger)
 
-			fmt.Println("CopyToRepository ==============================")
-			fmt.Println(processedImages)
-			fmt.Println("CopyToRepository ==============================")
+			fmt.Println("foundRootBundle ==============================")
+			fmt.Println(bundles)
+			fmt.Println("foundRootBundle ==============================")
 
 			if err != nil {
 				return nil, err
 			}
 
 			for _, bundle := range bundles {
+
+				fmt.Println("foundRootBundle2 ==============================")
+				fmt.Println(bundle)
+				fmt.Println("foundRootBundle2 ==============================")
+
 				if err := bundle.NoteCopy(processedImages, reg, opts.Logger); err != nil {
 					return nil, fmt.Errorf("Creating copy information for bundle %s: %s", bundle.DigestRef(), err)
 				}

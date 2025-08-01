@@ -114,6 +114,10 @@ func (i *ImageSet) Import(imgOrIndexes []imagedesc.ImageOrIndex,
 		return nil, err
 	}
 
+	i.logger.Logf("MultiWrite images...\n")
+	fmt.Print(imageOrIndexesToWrite)
+	i.logger.Logf("MultiWrite images...\n")
+
 	err = registry.MultiWrite(imageOrIndexesToWrite, i.concurrency, nil)
 	if err != nil {
 		return nil, err
