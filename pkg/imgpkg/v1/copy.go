@@ -71,6 +71,11 @@ func CopyToRepository(origin CopyOrigin, repository string, opts CopyOpts, reg r
 
 	if origin.TarPath != "" {
 		processedImages, err = opts.TarImageSet.Import(origin.TarPath, importRepo, reg)
+
+		fmt.Println("CopyToRepository ==============================")
+		fmt.Println(processedImages)
+		fmt.Println("CopyToRepository ==============================")
+
 		if err != nil {
 			return nil, err
 		}
@@ -88,6 +93,11 @@ func CopyToRepository(origin CopyOrigin, repository string, opts CopyOpts, reg r
 				}
 				foundRootBundle = true
 				pImage := plainimage.NewFetchedPlainImageWithTag(processedImage.DigestRef, processedImage.Tag, processedImage.Image)
+
+				fmt.Println("processedImage ==============================")
+				fmt.Println(pImage)
+				fmt.Println("processedImage ==============================")
+
 				lockReader := ctlbundle.NewImagesLockReader()
 				parentBundle = ctlbundle.NewBundle(pImage, reg, lockReader, ctlbundle.NewFetcherFromProcessedImages(processedImages.All(), reg, lockReader))
 			}
@@ -95,6 +105,11 @@ func CopyToRepository(origin CopyOrigin, repository string, opts CopyOpts, reg r
 
 		if foundRootBundle {
 			bundles, _, err := parentBundle.AllImagesLockRefs(opts.Concurrency, opts.Logger)
+
+			fmt.Println("CopyToRepository ==============================")
+			fmt.Println(processedImages)
+			fmt.Println("CopyToRepository ==============================")
+
 			if err != nil {
 				return nil, err
 			}

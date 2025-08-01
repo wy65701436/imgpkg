@@ -136,6 +136,10 @@ func (r LocationsConfigs) Save(reg ImagesMetadataWriter, bundleRef name.Digest, 
 
 	r.ui.Tracef("Pushing image\n")
 
+	r.ui.Tracef("=========================\n")
+	r.ui.Tracef(locRef.String())
+	r.ui.Tracef("=========================\n")
+
 	_, err = plainimage.NewContents([]string{tmpDir}, nil, false).Push(locRef, nil, reg.CloneWithLogger(util.NewNoopProgressBar()), logger)
 	if err != nil {
 		// Immutable tag errors within registries are not standardized.
